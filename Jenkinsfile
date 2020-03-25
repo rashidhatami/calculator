@@ -10,16 +10,17 @@ pipeline {
             stage("Test") {
                                 steps {
                                         sh 'mvn test'
+							publishHTML (target: [
+							reportDir: 'target/site/jacoco',
+							reportFiles: 'index.html',
+							reportName: "JaCoCo Report"
+							])
                                 }
             }
 		stage("Code Coverage: 90%") {
 				                steps {
 				                        
-							publishHTML (target: [
-							reportDir: 'site/jacoco',
-							reportFiles: 'index.html',
-							reportName: "JaCoCo Report"
-							])
+
 							sh 'mvn clean verify'
 				                }
 			    }
