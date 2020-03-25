@@ -12,5 +12,10 @@ pipeline {
                                         sh 'mvn test'
                                 }
             }
+		stage("Code Coverage: 90%") {
+				                steps {
+				                        sh 'mvn clean verify'
+				                }
+			    }
     }
 }
