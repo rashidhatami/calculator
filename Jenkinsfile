@@ -20,7 +20,11 @@ pipeline {
 		stage("Code Coverage: 90%") {
 				                steps {
 				                        
-
+							publishHTML (target: [
+							reportDir: 'target/site/jacoco',
+							reportFiles: 'index.html',
+							reportName: "Html of jacoco Report"
+							])
 							sh 'mvn clean verify'
 					
 				                }
