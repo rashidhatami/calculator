@@ -1,5 +1,8 @@
 pipeline {
     agent any
+		triggers {
+		pollSCM('* * * * *')
+		}
     stages {
             
             stage("Compile") {
@@ -19,7 +22,7 @@ pipeline {
             }
 		stage("Code Coverage: 90%") {
 				                steps {
-							sh 'mvn verify'
+							//sh 'mvn verify'
 					
 				                }
 			    }
