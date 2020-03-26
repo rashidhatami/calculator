@@ -9,11 +9,11 @@ pipeline {
             }
             stage("Test") {
                                 steps {
-                                        sh 'mvn clean test'
+                                        sh 'mvn test'
 					publishHTML (target: [
 					reportDir: 'target/site/jacoco',
 					reportFiles: 'index.html',
-					reportName: "Code conerage Report"
+					reportName: "Code coverage Report"
 					])
                                 }
             }
