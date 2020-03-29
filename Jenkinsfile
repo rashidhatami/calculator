@@ -36,7 +36,7 @@ pipeline {
 				sh "docker build -t localhost:5000/calculator ."
 			}
 		}
-    }
+    
 		stage("Credential Registry") {
 			steps {
 				sh "docker login localhost:5000 --username niki --password hatami"
@@ -48,5 +48,5 @@ pipeline {
 				sh "docker push localhost:5000/calculator"
 			}
 		}
-	
+}	
 }
