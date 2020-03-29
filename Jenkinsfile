@@ -26,6 +26,16 @@ pipeline {
 					
 				                }
 			    }
+		stage("Package") {
+			steps {
+				sh "mvn package"
+			}
+		}
+		stage("Docker build") {
+			steps {
+				sh "docker build -t localhost:5000/calculator ."
+			}
+		}
     }
 	post {
 	always {
