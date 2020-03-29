@@ -37,5 +37,16 @@ pipeline {
 			}
 		}
     }
+		stage("Credential Registry") {
+			steps {
+				sh "docker login localhost:5000 --username niki --password hatami"
+			}
+		}
+
+		stage("Docker push") {
+			steps {
+				sh "docker push localhost:5000/calculator"
+			}
+		}
 	
 }
