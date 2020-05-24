@@ -20,7 +20,7 @@ pipeline {
 					])
                                 }
             }
-		stage("Code Coverage: 90%") {
+		stage("Code Coverage: 80%") {
 				                steps {
 							sh 'mvn verify'
 					
