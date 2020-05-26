@@ -10,7 +10,7 @@ pipeline {
                                         sh 'mvn compile'
                                 }
             }
-            stage("Test") {
+            stage("Unit Test") {
                                 steps {
                                         sh 'mvn test'
 					publishHTML (target: [
@@ -31,34 +31,48 @@ pipeline {
 				sh "mvn package"
 			}
 		}
-		stage("Docker build") {
+		stage("Build (Docker build)") {
 			steps {
 				sh "docker build -t localhost:5000/calculator ."
 			}
 		}
-    
-		stage("Credential Registry") {
-			steps {
-				sh "docker login localhost:5000 --username niki --password hatami"
-			}
-		}
 
-		stage("Docker push") {
+		stage("Ship (Docker push)") {
 			steps {
 				sh "docker push localhost:5000/calculator"
 			}
 		}
-		stage("Deploy to staging") {
+		stage("Update version"){
+		      steps{
+			    echo "Update version"
+			    }
+		}
+		stage("Run (Deploy to staging)") {
 			steps {
 				sh "docker run -d --rm -p 8765:8080 --name calculator localhost:5000/calculator"
 			}
 		}
-		stage("Acceptance test") {
+		stage("Test (User Acceptance testing)") {
 			steps {
 				sleep 60
 				sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
 				}
 		}
+		stage("Test (Performance testing)"){
+		      steps{
+			    echo "Performance testing"
+			    }
+		}
+		stage("Release"){
+		      steps{
+			    echo "Release"
+			    }
+		}
+		stage("Smok test"){
+		      steps{
+			    echo "Smok test"
+			    }
+		}		
 }
 		post {
 			always {
