@@ -44,7 +44,7 @@ pipeline {
 		}
 		stage("Update version"){
 		      steps{
-			    echo "Update version"
+			    echo 'Update version'
 			    }
 		}
 		stage("Run (Deploy to staging)") {
@@ -60,17 +60,17 @@ pipeline {
 		}
 		stage("Performance test){
 		      steps{
-			    echo "Performance testing"
+			    echo 'Performance testing'
 			    }
 		}
 		stage("Release"){
 		      steps{
-			    echo "Release"
+			    echo 'Release'
 			    }
 		}
 		stage("Smok test"){
 		      steps{
-			    echo "Smok test"
+			    echo 'Smok test'
 			    }
 		}		
 }
