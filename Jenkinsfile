@@ -75,8 +75,11 @@ pipeline {
 		}		
 }
 		post {
-			always {
-				sh "docker stop calculator"
-				}
+			success{
+				echo "Completed Pipeline: ${currentBuild.fullDisplayName}"
+		}
+			failure{
+				echo "The pipeline: ${currentBuild.fullDisplayName} failed"
+		}
 		}	
 }
