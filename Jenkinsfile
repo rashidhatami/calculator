@@ -31,13 +31,13 @@ pipeline {
 				sh "mvn package -Dmaven.test.skip=true"
 			}
 		}
-		stage("Build (Docker build)") {
+		stage("Build (Container build)") {
 			steps {
 				sh "docker build -t localhost:5000/calculator ."
 			}
 		}
 
-		stage("Ship (Docker push)") {
+		stage("Ship (Container push)") {
 			steps {
 				sh "docker push localhost:5000/calculator"
 			}
